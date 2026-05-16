@@ -81,8 +81,9 @@ const INITIAL_DB = {
 };
 
 const ADMIN_PIN = "1234";
+const LOGO_URL = "/fa88d381-f0a6-4bcb-a1e3-53bfd8e930e7.jpg";
 
-function evaluarLocal(respuestaEstudiante, palabrasClave, respuestaEsperada) {
+function evaluarLocal(respuestaEstudiante, palabrasClave) {
   const texto = respuestaEstudiante.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   const claves = palabrasClave.map(p => p.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
   const coincidencias = claves.filter(c => texto.includes(c));
@@ -151,7 +152,141 @@ function detenerVoz() { if (window.speechSynthesis) window.speechSynthesis.cance
 const guardar = async (k, v) => { try { await window.storage.set(k, JSON.stringify(v)); } catch {} };
 const cargar = async (k, def) => { try { const r = await window.storage.get(k); return r ? JSON.parse(r.value) : def; } catch { return def; } };
 
+// ── SPLASH SCREEN ──────────────────────────────────────────────
+function SplashScreen({ onEntrar }) {
+  const [pulse, setPulse] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => setPulse(p => !p), 1200);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div style={{
+      minHeight: "100vh",
+      background: "linear-gradient(160deg, #0a0f1e 0%, #0d1a2e 50%, #0a1628 100%)",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      fontFamily: "system-ui, sans-serif",
+      padding: "40px 20px",
+      textAlign: "center",
+      position: "relative",
+      overflow: "hidden"
+    }}>
+      {/* Fondo decorativo */}
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, overflow: "hidden", pointerEvents: "none" }}>
+        {[...Array(6)].map((_, i) => (
+          <div key={i} style={{
+            position: "absolute",
+            borderRadius: "50%",
+            background: `rgba(99,179,237,${0.03 + i * 0.01})`,
+            width: `${200 + i * 120}px`,
+            height: `${200 + i * 120}px`,
+            top: "50%", left: "50%",
+            transform: "translate(-50%, -50%)",
+            animation: `ripple ${3 + i}s ease-in-out infinite`,
+          }} />
+        ))}
+      </div>
+
+      <style>{`
+        @keyframes ripple {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+          50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.8; }
+        }
+        @keyframes fadeInDown {
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes glow {
+          0%, 100% { box-shadow: 0 0 30px rgba(99,179,237,0.3), 0 0 60px rgba(99,179,237,0.1); }
+          50% { box-shadow: 0 0 50px rgba(99,179,237,0.6), 0 0 100px rgba(99,179,237,0.2); }
+        }
+      `}</style>
+
+      {/* Nombre de la app */}
+      <div style={{ animation: "fadeInDown 0.8s ease forwards", marginBottom: "8px", position: "relative", zIndex: 1 }}>
+        <div style={{ fontSize: "clamp(28px, 7vw, 52px)", fontWeight: 900, color: "#fff", letterSpacing: "-1px", lineHeight: 1.1 }}>
+          LoyolaSim
+        </div>
+        <div style={{ fontSize: "clamp(16px, 4vw, 28px)", fontWeight: 400, color: "#63b3ed", letterSpacing: "4px", textTransform: "uppercase" }}>
+          Clinical
+        </div>
+      </div>
+
+      {/* Línea decorativa */}
+      <div style={{ width: "80px", height: "2px", background: "linear-gradient(90deg, transparent, #63b3ed, transparent)", margin: "16px auto", animation: "fadeInDown 1s ease forwards", position: "relative", zIndex: 1 }} />
+
+      {/* Logo como botón */}
+      <div style={{ position: "relative", zIndex: 1, animation: "fadeInDown 1s ease forwards", margin: "24px 0" }}>
+        <div style={{ fontSize: "11px", color: "#4a7fa5", textTransform: "uppercase", letterSpacing: "2px", marginBottom: "20px" }}>
+          Presiona el logo para ingresar
+        </div>
+        <button
+          onClick={onEntrar}
+          style={{
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
+            padding: 0,
+            borderRadius: "50%",
+            animation: "glow 2s ease-in-out infinite",
+            transition: "transform 0.2s",
+          }}
+          onMouseEnter={e => e.currentTarget.style.transform = "scale(1.08)"}
+          onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
+          onMouseDown={e => e.currentTarget.style.transform = "scale(0.95)"}
+          onMouseUp={e => e.currentTarget.style.transform = "scale(1.08)"}
+        >
+          <img
+            src={LOGO_URL}
+            alt="Universidad Loyola"
+            style={{
+              width: "180px",
+              height: "180px",
+              objectFit: "contain",
+              borderRadius: "50%",
+              background: "rgba(255,255,255,0.95)",
+              padding: "12px",
+              display: "block",
+            }}
+          />
+        </button>
+
+        {/* Indicador pulsante */}
+        <div style={{
+          marginTop: "16px",
+          fontSize: "13px",
+          color: pulse ? "#63b3ed" : "#2a5a7a",
+          transition: "color 0.6s ease",
+          fontWeight: 600
+        }}>
+          ● Toca para comenzar
+        </div>
+      </div>
+
+      {/* Carrera */}
+      <div style={{ animation: "fadeInUp 1.2s ease forwards", position: "relative", zIndex: 1, marginTop: "8px" }}>
+        <div style={{ fontSize: "13px", color: "#4a7fa5", textTransform: "uppercase", letterSpacing: "3px" }}>
+          Carrera de Enfermería
+        </div>
+        <div style={{ fontSize: "11px", color: "#2a4a6a", marginTop: "4px" }}>
+          Universidad Loyola · Bolivia
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── APP PRINCIPAL ───────────────────────────────────────────────
 export default function App() {
+  const [splash, setSplash] = useState(true);
   const [vista, setVista] = useState("inicio");
   const [db, setDB] = useState(null);
   const [historial, setHistorial] = useState([]);
@@ -170,6 +305,8 @@ export default function App() {
   const agregarHist = async e => { const nuevo = [e, ...historial].slice(0, 30); setHistorial(nuevo); await guardar("loyolasim_v5_hist", nuevo); };
   const mostrarToast = msg => { setToast(msg); setTimeout(() => setToast(null), 3000); };
 
+  if (splash) return <SplashScreen onEntrar={() => setSplash(false)} />;
+
   if (!db) return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100vh", background: "#0a0f1e", color: "#63b3ed", fontFamily: "system-ui,sans-serif", fontSize: "18px" }}>
       Cargando LoyolaSim Clinical...
@@ -179,9 +316,12 @@ export default function App() {
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(135deg,#0a0f1e,#0d1a2e)", fontFamily: "system-ui,sans-serif", color: "#e8eaf0" }}>
       <nav style={{ background: "rgba(10,15,30,0.95)", borderBottom: "1px solid rgba(99,179,237,0.15)", padding: "0 16px", display: "flex", alignItems: "center", flexWrap: "wrap", gap: "6px", minHeight: "56px", position: "sticky", top: 0, zIndex: 100 }}>
+        {/* Logo pequeño en nav */}
+        <img src={LOGO_URL} alt="Loyola" onClick={() => setSplash(true)}
+          style={{ width: "34px", height: "34px", objectFit: "contain", borderRadius: "50%", background: "#fff", padding: "3px", cursor: "pointer", marginRight: "6px" }} />
         <div style={{ marginRight: "auto", padding: "8px 0" }}>
-          <div style={{ fontSize: "18px", fontWeight: 800, color: "#63b3ed" }}>LoyolaSim Clinical</div>
-          <div style={{ fontSize: "10px", color: "#3a6a8a", textTransform: "uppercase", letterSpacing: "1.5px" }}>Simulador Clinico Bolivia</div>
+          <div style={{ fontSize: "16px", fontWeight: 800, color: "#63b3ed" }}>LoyolaSim Clinical</div>
+          <div style={{ fontSize: "9px", color: "#3a6a8a", textTransform: "uppercase", letterSpacing: "1.5px" }}>Carrera de Enfermeria</div>
         </div>
         {[["inicio","Inicio"],["general","General"],["estudiante","Estudiante"],["admin","Docente"],["historial","Historial"]].map(([v, l]) => (
           <button key={v} onClick={() => setVista(v)} style={{ padding: "6px 12px", borderRadius: "16px", border: `1px solid ${vista === v ? "rgba(99,179,237,0.6)" : "rgba(255,255,255,0.08)"}`, background: vista === v ? "rgba(99,179,237,0.15)" : "transparent", color: vista === v ? "#63b3ed" : "#6a8faa", fontSize: "12px", fontWeight: vista === v ? 700 : 400, cursor: "pointer", whiteSpace: "nowrap", fontFamily: "inherit" }}>
@@ -349,7 +489,7 @@ function Estudiante({ db, agregarHist }) {
     if (!respuesta.trim() || !pregunta) return;
     detenerVoz();
     const palabrasClave = pregunta.palabrasClave || [];
-    const r = evaluarLocal(respuesta, palabrasClave, pregunta.respuesta);
+    const r = evaluarLocal(respuesta, palabrasClave);
     const fb = { ...r, pts: r.correcto ? pregunta.puntaje : 0, max: pregunta.puntaje, caso: caso.titulo, respuestaEsperada: pregunta.respuesta };
     setFeedback(fb);
     setLey(true);
@@ -409,7 +549,6 @@ function Estudiante({ db, agregarHist }) {
           <div style={{ height: "100%", background: "linear-gradient(90deg,#63b3ed,#9f7aea)", borderRadius: "4px", width: `${(casoIdx / totalCasos) * 100}%`, transition: "width 0.4s" }} />
         </div>
       </div>
-
       <div style={{ background: "rgba(99,179,237,0.06)", border: "1px solid rgba(99,179,237,0.18)", borderRadius: "16px", padding: "20px", marginBottom: "20px" }}>
         <div style={{ fontSize: "16px", color: "#63b3ed", fontWeight: 700, marginBottom: "8px" }}>📋 {caso.titulo}</div>
         <div style={{ fontSize: "14px", color: "#8ab0c8", lineHeight: 1.7 }}>{caso.caso}</div>
@@ -418,7 +557,6 @@ function Estudiante({ db, agregarHist }) {
           {ley ? "🔊 Leyendo..." : "🔊 Escuchar caso"}
         </button>
       </div>
-
       <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "16px", padding: "24px" }}>
         <div style={{ fontSize: "11px", color: "#4a7fa5", textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: "8px" }}>Pregunta</div>
         <div style={{ fontSize: "17px", fontWeight: 600, color: "#e8eaf0", lineHeight: 1.6, marginBottom: "18px" }}>{pregunta?.texto}</div>
@@ -429,14 +567,12 @@ function Estudiante({ db, agregarHist }) {
           <BtnMic esc={esc} toggle={toggle} disabled={!!feedback} />
         </div>
         {esc && <div style={{ fontSize: "12px", color: "#ef4444", marginBottom: "8px", textAlign: "center" }}>🎤 Escuchando... habla ahora</div>}
-
         {!feedback && (
           <button onClick={enviar} disabled={!respuesta.trim()}
             style={{ width: "100%", padding: "14px", borderRadius: "12px", border: "none", background: "linear-gradient(135deg,#9f7aea,#7c3aed)", color: "#fff", fontFamily: "inherit", fontSize: "15px", fontWeight: 600, cursor: "pointer", opacity: !respuesta.trim() ? 0.4 : 1 }}>
             Enviar respuesta →
           </button>
         )}
-
         {feedback && (
           <div style={{ background: feedback.correcto ? "rgba(16,185,129,0.12)" : "rgba(239,68,68,0.1)", border: `1px solid ${feedback.correcto ? "rgba(16,185,129,0.4)" : "rgba(239,68,68,0.3)"}`, borderRadius: "12px", padding: "20px", marginTop: "14px" }}>
             <div style={{ fontSize: "26px", fontWeight: 800, color: feedback.correcto ? "#34d399" : "#f87171", marginBottom: "8px" }}>
@@ -552,7 +688,7 @@ function Admin({ db, actualizarDB, toast }) {
         <h2 style={{ fontSize: "24px", fontWeight: 700, color: "#fff" }}>Panel Docente</h2>
         <button onClick={reset} style={{ padding: "7px 14px", borderRadius: "8px", border: "1px solid rgba(239,68,68,0.3)", background: "transparent", color: "#f87171", fontFamily: "inherit", fontSize: "12px", cursor: "pointer" }}>Restaurar original</button>
       </div>
-      <p style={{ color: "#6a8faa", fontSize: "13px", marginBottom: "20px" }}>Agrega palabras clave separadas por coma para que el sistema evalúe las respuestas automaticamente.</p>
+      <p style={{ color: "#6a8faa", fontSize: "13px", marginBottom: "20px" }}>Agrega palabras clave separadas por coma para la evaluacion automatica.</p>
       <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "20px" }}>
         {db.areas.map(a => (
           <button key={a.id} onClick={() => setTab(a.id)} style={{ padding: "7px 14px", borderRadius: "20px", border: `1px solid ${tab === a.id ? a.color + "80" : "rgba(255,255,255,0.1)"}`, background: tab === a.id ? a.color + "20" : "transparent", color: tab === a.id ? "#e8eaf0" : "#6a8faa", fontSize: "12px", cursor: "pointer", fontFamily: "inherit", fontWeight: tab === a.id ? 600 : 400 }}>
