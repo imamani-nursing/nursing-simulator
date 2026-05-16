@@ -131,7 +131,7 @@ async function llamarClaude(prompt) {
   });
   if (!resp.ok) throw new Error("Error API");
   const d = await resp.json();
-  return d.content.map(i => i.text || "").join("").replace(/json|/g, "").trim();
+  return d.content.map(i => i.text || "").join("").replace(/```json|```/g, "").trim();
 }
 
 async function evaluarRespuesta(pregunta, respuestaEsperada, respuestaEstudiante) {
@@ -200,7 +200,7 @@ export default function App() {
           <div style={{ fontSize: "10px", color: "#3a6a8a", textTransform: "uppercase", letterSpacing: "1.5px" }}>Simulador Clinico Bolivia</div>
         </div>
         {[["inicio","Inicio"],["general","General"],["estudiante","Estudiante"],["admin","Docente"],["historial","Historial"]].map(([v, l]) => (
-          <button key={v} onClick={() => setVista(v)} style={{ padding: "6px 12px", borderRadius: "16px", border: 1px solid ${vista === v ? "rgba(99,179,237,0.6)" : "rgba(255,255,255,0.08)"}, background: vista === v ? "rgba(99,179,237,0.15)" : "transparent", color: vista === v ? "#63b3ed" : "#6a8faa", fontSize: "12px", fontWeight: vista === v ? 700 : 400, cursor: "pointer", whiteSpace: "nowrap", fontFamily: "inherit" }}>
+          <button key={v} onClick={() => setVista(v)} style={{ padding: "6px 12px", borderRadius: "16px", border: `1px solid ${vista === v ? "rgba(99,179,237,0.6)" : "rgba(255,255,255,0.08)"}`, background: vista === v ? "rgba(99,179,237,0.15)" : "transparent", color: vista === v ? "#63b3ed" : "#6a8faa", fontSize: "12px", fontWeight: vista === v ? 700 : 400, cursor: "pointer", whiteSpace: "nowrap", fontFamily: "inherit" }}>
             {l}
           </button>
         ))}
@@ -231,9 +231,9 @@ function Inicio({ setVista }) {
           { v: "estudiante", icon: "🎓", titulo: "Modo Estudiante", desc: "Practica casos clinicos con evaluacion inmediata por inteligencia artificial.", color: "#9f7aea" }
         ].map(({ v, icon, titulo, desc, color }) => (
           <div key={v} onClick={() => setVista(v)}
-            style={{ background: ${color}12, border: 1px solid ${color}30, borderRadius: "20px", padding: "32px 24px", cursor: "pointer", flex: 1, minWidth: "240px", maxWidth: "280px", textAlign: "left", transition: "all 0.3s" }}
-            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.borderColor = ${color}60; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.borderColor = ${color}30; }}>
+            style={{ background: `${color}12`, border: `1px solid ${color}30`, borderRadius: "20px", padding: "32px 24px", cursor: "pointer", flex: 1, minWidth: "240px", maxWidth: "280px", textAlign: "left", transition: "all 0.3s" }}
+            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.borderColor = `${color}60`; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.borderColor = `${color}30`; }}>
             <div style={{ fontSize: "40px", marginBottom: "12px" }}>{icon}</div>
             <div style={{ fontSize: "20px", fontWeight: 700, color: "#fff", marginBottom: "8px" }}>{titulo}</div>
             <div style={{ fontSize: "13px", color: "#6a8faa", lineHeight: 1.5, marginBottom: "16px" }}>{desc}</div>
@@ -265,7 +265,7 @@ function useMic(onRes) {
 function BtnMic({ esc, toggle, disabled }) {
   return (
     <button onClick={toggle} disabled={disabled}
-      style={{ width: "48px", height: "48px", borderRadius: "50%", border: 2px solid ${esc ? "#ef4444" : "rgba(99,179,237,0.5)"}, background: esc ? "rgba(239,68,68,0.15)" : "rgba(99,179,237,0.1)", color: esc ? "#ef4444" : "#63b3ed", fontSize: "20px", cursor: disabled ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+      style={{ width: "48px", height: "48px", borderRadius: "50%", border: `2px solid ${esc ? "#ef4444" : "rgba(99,179,237,0.5)"}`, background: esc ? "rgba(239,68,68,0.15)" : "rgba(99,179,237,0.1)", color: esc ? "#ef4444" : "#63b3ed", fontSize: "20px", cursor: disabled ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
       {esc ? "🔴" : "🎤"}
     </button>
   );
@@ -310,7 +310,7 @@ function General() {
       {carg && <div style={{ textAlign: "center", padding: "24px", color: "#63b3ed" }}>Analizando sintomas...</div>}
       {res && (
         <div style={{ background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: "16px", padding: "24px" }}>
-          <span style={{ background: ${urgCol[urg]}20, color: urgCol[urg], border: 1px solid ${urgCol[urg]}40, padding: "4px 14px", borderRadius: "20px", fontSize: "11px", fontWeight: 700, textTransform: "uppercase" }}>
+          <span style={{ background: `${urgCol[urg]}20`, color: urgCol[urg], border: `1px solid ${urgCol[urg]}40`, padding: "4px 14px", borderRadius: "20px", fontSize: "11px", fontWeight: 700, textTransform: "uppercase" }}>
             {urg === "alta" ? "Urgencia Alta" : urg === "media" ? "Urgencia Media" : "Urgencia Baja"}
           </span>
           <div style={{ fontSize: "22px", color: "#34d399", fontWeight: 700, margin: "12px 0 6px" }}>{res.condicion}</div>
@@ -332,6 +332,7 @@ function General() {
     </div>
   );
 }
+
 function Estudiante({ db, agregarHist }) {
   const [paso, setPaso] = useState("area");
   const [areaId, setAreaId] = useState(null);
@@ -389,8 +390,8 @@ function Estudiante({ db, agregarHist }) {
       setTimeout(() => {
         setLey(true);
         const msg = pct >= 80
-          ? Evaluacion completada. Obtuviste ${total} de ${max} puntos. Excelente desempeno.
-          : Evaluacion completada. Obtuviste ${total} de ${max} puntos. Repasa los temas donde tuviste dificultades.;
+          ? `Evaluacion completada. Obtuviste ${total} de ${max} puntos. Excelente desempeno.`
+          : `Evaluacion completada. Obtuviste ${total} de ${max} puntos. Repasa los temas donde tuviste dificultades.`;
         hablar(msg, () => setLey(false));
       }, 400);
     } else {
@@ -412,7 +413,7 @@ function Estudiante({ db, agregarHist }) {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(160px,1fr))", gap: "14px" }}>
         {db.areas.map(a => (
           <div key={a.id} onClick={() => iniciarArea(a.id)}
-            style={{ background: ${a.color}15, border: 1px solid ${a.color}40, borderRadius: "16px", padding: "24px 16px", cursor: "pointer", textAlign: "center", transition: "all 0.25s" }}
+            style={{ background: `${a.color}15`, border: `1px solid ${a.color}40`, borderRadius: "16px", padding: "24px 16px", cursor: "pointer", textAlign: "center", transition: "all 0.25s" }}
             onMouseEnter={e => e.currentTarget.style.transform = "translateY(-3px)"}
             onMouseLeave={e => e.currentTarget.style.transform = ""}>
             <div style={{ fontSize: "36px", marginBottom: "10px" }}>{a.icon}</div>
@@ -433,7 +434,7 @@ function Estudiante({ db, agregarHist }) {
           <span>Caso {casoIdx + 1} de {totalCasos}</span>
         </div>
         <div style={{ height: "6px", background: "rgba(255,255,255,0.08)", borderRadius: "4px", overflow: "hidden" }}>
-          <div style={{ height: "100%", background: "linear-gradient(90deg,#63b3ed,#9f7aea)", borderRadius: "4px", width: ${((casoIdx) / totalCasos) * 100}%, transition: "width 0.4s" }} />
+          <div style={{ height: "100%", background: "linear-gradient(90deg,#63b3ed,#9f7aea)", borderRadius: "4px", width: `${((casoIdx) / totalCasos) * 100}%`, transition: "width 0.4s" }} />
         </div>
       </div>
 
@@ -470,7 +471,7 @@ function Estudiante({ db, agregarHist }) {
         {carg && <div style={{ textAlign: "center", padding: "14px", color: "#9f7aea" }}>Evaluando...</div>}
 
         {feedback && (
-          <div style={{ background: feedback.correcto ? "rgba(16,185,129,0.12)" : "rgba(239,68,68,0.1)", border: 1px solid ${feedback.correcto ? "rgba(16,185,129,0.4)" : "rgba(239,68,68,0.3)"}, borderRadius: "12px", padding: "20px", marginTop: "14px" }}>
+          <div style={{ background: feedback.correcto ? "rgba(16,185,129,0.12)" : "rgba(239,68,68,0.1)", border: `1px solid ${feedback.correcto ? "rgba(16,185,129,0.4)" : "rgba(239,68,68,0.3)"}`, borderRadius: "12px", padding: "20px", marginTop: "14px" }}>
             <div style={{ fontSize: "26px", fontWeight: 800, color: feedback.correcto ? "#34d399" : "#f87171", marginBottom: "6px" }}>
               {feedback.correcto ? "✓ CORRECTO" : "✗ INCORRECTO"}
             </div>
@@ -503,7 +504,7 @@ function Estudiante({ db, agregarHist }) {
         <p style={{ color: "#4a7fa5", fontSize: "13px", marginBottom: "28px" }}>{area?.nombre}</p>
 
         {/* Circulo de puntaje */}
-        <div style={{ width: "140px", height: "140px", borderRadius: "50%", margin: "0 auto 24px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: conic-gradient(${color} ${pct * 3.6}deg, rgba(255,255,255,0.06) 0), boxShadow: 0 0 40px ${color}30 }}>
+        <div style={{ width: "140px", height: "140px", borderRadius: "50%", margin: "0 auto 24px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: `conic-gradient(${color} ${pct * 3.6}deg, rgba(255,255,255,0.06) 0)`, boxShadow: `0 0 40px ${color}30` }}>
           <div style={{ width: "112px", height: "112px", borderRadius: "50%", background: "#0d1a2e", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
             <div style={{ fontSize: "36px", fontWeight: 800, color: "#fff", lineHeight: 1 }}>{pct}%</div>
             <div style={{ fontSize: "11px", color: "#4a7fa5" }}>{total}/{max} pts</div>
@@ -567,7 +568,7 @@ function Pin({ onOk }) {
       <div style={{ fontSize: "22px", fontWeight: 700, color: "#fff", marginBottom: "6px" }}>Panel Docente</div>
       <div style={{ fontSize: "13px", color: "#6a8faa", marginBottom: "28px" }}>Ingresa tu PIN para administrar los casos</div>
       <input type="password" value={pin} onChange={e => { setPin(e.target.value); setErr(false); }} onKeyDown={e => e.key === "Enter" && check()} maxLength={6} placeholder="••••"
-        style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: 1px solid ${err ? "#ef4444" : "rgba(255,255,255,0.15)"}, borderRadius: "12px", padding: "16px", color: "#e8eaf0", fontSize: "24px", textAlign: "center", letterSpacing: "8px", outline: "none", fontFamily: "inherit", marginBottom: "10px" }} />
+        style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: `1px solid ${err ? "#ef4444" : "rgba(255,255,255,0.15)"}`, borderRadius: "12px", padding: "16px", color: "#e8eaf0", fontSize: "24px", textAlign: "center", letterSpacing: "8px", outline: "none", fontFamily: "inherit", marginBottom: "10px" }} />
       {err && <div style={{ color: "#f87171", fontSize: "13px", marginBottom: "10px" }}>PIN incorrecto.</div>}
       <button onClick={check} style={{ width: "100%", padding: "14px", borderRadius: "12px", border: "none", background: "linear-gradient(135deg,#3b82f6,#2563eb)", color: "#fff", fontSize: "15px", fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Acceder →</button>
       <div style={{ marginTop: "12px", fontSize: "11px", color: "#3a5a7a" }}>PIN por defecto: 1234</div>
@@ -597,7 +598,7 @@ function Admin({ db, actualizarDB, toast }) {
       <p style={{ color: "#6a8faa", fontSize: "13px", marginBottom: "20px" }}>Cada caso tiene 1 pregunta y 1 respuesta esperada. Los cambios se guardan automaticamente.</p>
       <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "20px" }}>
         {db.areas.map(a => (
-          <button key={a.id} onClick={() => setTab(a.id)} style={{ padding: "7px 14px", borderRadius: "20px", border: 1px solid ${tab === a.id ? a.color + "80" : "rgba(255,255,255,0.1)"}, background: tab === a.id ? a.color + "20" : "transparent", color: tab === a.id ? "#e8eaf0" : "#6a8faa", fontSize: "12px", cursor: "pointer", fontFamily: "inherit", fontWeight: tab === a.id ? 600 : 400 }}>
+          <button key={a.id} onClick={() => setTab(a.id)} style={{ padding: "7px 14px", borderRadius: "20px", border: `1px solid ${tab === a.id ? a.color + "80" : "rgba(255,255,255,0.1)"}`, background: tab === a.id ? a.color + "20" : "transparent", color: tab === a.id ? "#e8eaf0" : "#6a8faa", fontSize: "12px", cursor: "pointer", fontFamily: "inherit", fontWeight: tab === a.id ? 600 : 400 }}>
             {a.icon} {a.nombre}
           </button>
         ))}
