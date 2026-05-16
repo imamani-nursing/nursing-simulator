@@ -8,12 +8,12 @@ const INITIAL_DB = {
         {
           id: "g1", titulo: "Trabajo de Parto",
           caso: "Mujer de 24 anos con 38 semanas de embarazo llega al centro de salud con dolor abdominal cada 5 minutos y salida de liquido transparente.",
-          preguntas: [{ texto: "Que signo indica que la paciente esta iniciando trabajo de parto?", respuesta: "Las contracciones frecuentes y la salida de liquido amniotico indican inicio del trabajo de parto.", puntaje: 10 }]
+          preguntas: [{ texto: "Que signo indica que la paciente esta iniciando trabajo de parto?", respuesta: "Las contracciones frecuentes y la salida de liquido amniotico indican inicio del trabajo de parto.", puntaje: 10, palabrasClave: ["contracciones","liquido amniotico","trabajo de parto","dolor abdominal","frecuentes"] }]
         },
         {
           id: "g2", titulo: "Preeclampsia",
           caso: "Gestante de 30 semanas presenta dolor de cabeza intenso, vision borrosa y presion arterial de 150 sobre 100 milimetros de mercurio.",
-          preguntas: [{ texto: "Que complicacion del embarazo podria presentar la paciente?", respuesta: "La paciente podria presentar preeclampsia.", puntaje: 10 }]
+          preguntas: [{ texto: "Que complicacion del embarazo podria presentar la paciente?", respuesta: "La paciente podria presentar preeclampsia.", puntaje: 10, palabrasClave: ["preeclampsia","presion","hipertension","eclampsia"] }]
         }
       ]
     },
@@ -23,12 +23,12 @@ const INITIAL_DB = {
         {
           id: "m1", titulo: "Lactancia Materna",
           caso: "Una madre lleva a su bebe de 4 meses al control. Refiere que solo recibe leche materna.",
-          preguntas: [{ texto: "Que recomendacion se debe brindar a la madre?", respuesta: "Continuar con lactancia materna exclusiva hasta los 6 meses.", puntaje: 10 }]
+          preguntas: [{ texto: "Que recomendacion se debe brindar a la madre?", respuesta: "Continuar con lactancia materna exclusiva hasta los 6 meses.", puntaje: 10, palabrasClave: ["lactancia","materna","exclusiva","6 meses","seis meses","continuar"] }]
         },
         {
           id: "m2", titulo: "Hipotermia Neonatal",
           caso: "Un recien nacido presenta temperatura baja, piel fria y llanto debil.",
-          preguntas: [{ texto: "Que accion inmediata debe realizar enfermeria?", respuesta: "Abrigar al recien nacido y mantener calor corporal mediante contacto piel a piel.", puntaje: 10 }]
+          preguntas: [{ texto: "Que accion inmediata debe realizar enfermeria?", respuesta: "Abrigar al recien nacido y mantener calor corporal mediante contacto piel a piel.", puntaje: 10, palabrasClave: ["abrigar","calor","piel a piel","temperatura","abrigo","calentar"] }]
         }
       ]
     },
@@ -38,12 +38,12 @@ const INITIAL_DB = {
         {
           id: "p1", titulo: "Dificultad Respiratoria",
           caso: "Nino de 5 anos llega con fiebre, tos y dificultad respiratoria leve.",
-          preguntas: [{ texto: "Que signo vital debe vigilarse prioritariamente?", respuesta: "La frecuencia respiratoria y la saturacion de oxigeno.", puntaje: 10 }]
+          preguntas: [{ texto: "Que signo vital debe vigilarse prioritariamente?", respuesta: "La frecuencia respiratoria y la saturacion de oxigeno.", puntaje: 10, palabrasClave: ["frecuencia respiratoria","saturacion","oxigeno","respiracion","signos vitales"] }]
         },
         {
           id: "p2", titulo: "Deshidratacion",
           caso: "Nina de 2 anos presenta diarrea y vomitos desde hace dos dias. Tiene labios secos y llora sin lagrimas.",
-          preguntas: [{ texto: "Que problema presenta la paciente?", respuesta: "Presenta signos de deshidratacion.", puntaje: 10 }]
+          preguntas: [{ texto: "Que problema presenta la paciente?", respuesta: "Presenta signos de deshidratacion.", puntaje: 10, palabrasClave: ["deshidratacion","deshidratada","liquidos","agua","hidratacion"] }]
         }
       ]
     },
@@ -53,12 +53,12 @@ const INITIAL_DB = {
         {
           id: "q1", titulo: "Conteo de Gasas",
           caso: "Durante una cirugia el instrumentador nota que falta una gasa del conteo inicial.",
-          preguntas: [{ texto: "Que debe hacer inmediatamente?", respuesta: "Informar al equipo quirurgico y realizar un nuevo conteo antes de cerrar la cirugia.", puntaje: 10 }]
+          preguntas: [{ texto: "Que debe hacer inmediatamente?", respuesta: "Informar al equipo quirurgico y realizar un nuevo conteo antes de cerrar la cirugia.", puntaje: 10, palabrasClave: ["informar","conteo","equipo","quirurgico","nuevo conteo","cerrar"] }]
         },
         {
           id: "q2", titulo: "Esterilizacion",
           caso: "Antes de iniciar una cirugia el personal verifica la esterilidad del instrumental.",
-          preguntas: [{ texto: "Por que es importante la esterilizacion?", respuesta: "Porque previene infecciones y contaminacion del paciente.", puntaje: 10 }]
+          preguntas: [{ texto: "Por que es importante la esterilizacion?", respuesta: "Porque previene infecciones y contaminacion del paciente.", puntaje: 10, palabrasClave: ["infecciones","contamina","esteril","bacterias","microorganismos","previene"] }]
         }
       ]
     },
@@ -68,18 +68,49 @@ const INITIAL_DB = {
         {
           id: "a1", titulo: "Hemorragia",
           caso: "Un joven cae de una motocicleta y presenta sangrado abundante en el brazo.",
-          preguntas: [{ texto: "Que accion de primeros auxilios debe realizarse primero?", respuesta: "Aplicar presion directa sobre la herida para controlar el sangrado.", puntaje: 10 }]
+          preguntas: [{ texto: "Que accion de primeros auxilios debe realizarse primero?", respuesta: "Aplicar presion directa sobre la herida para controlar el sangrado.", puntaje: 10, palabrasClave: ["presion","directa","herida","sangrado","comprimir","compresion"] }]
         },
         {
           id: "a2", titulo: "Paciente Inconsciente",
           caso: "Una persona pierde el conocimiento en la calle pero respira normalmente.",
-          preguntas: [{ texto: "En que posicion debe colocarse al paciente?", respuesta: "Debe colocarse en posicion lateral de seguridad.", puntaje: 10 }]
+          preguntas: [{ texto: "En que posicion debe colocarse al paciente?", respuesta: "Debe colocarse en posicion lateral de seguridad.", puntaje: 10, palabrasClave: ["lateral","seguridad","posicion lateral","costado","decubito"] }]
         }
       ]
     }
   ]
 };
+
 const ADMIN_PIN = "1234";
+
+function evaluarLocal(respuestaEstudiante, palabrasClave, respuestaEsperada) {
+  const texto = respuestaEstudiante.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const claves = palabrasClave.map(p => p.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+  const coincidencias = claves.filter(c => texto.includes(c));
+  const porcentaje = claves.length > 0 ? coincidencias.length / claves.length : 0;
+  const correcto = porcentaje >= 0.4;
+  if (correcto) {
+    return { correcto: true, mensaje_voz: "Correcto, muy bien. Tu respuesta menciona los conceptos clave.", recomendacion: "Excelente. Sigue repasando para reforzar el tema." };
+  } else {
+    return { correcto: false, mensaje_voz: "Respuesta incompleta. Revisa los conceptos clave del tema.", recomendacion: `Recuerda mencionar: ${palabrasClave.slice(0, 3).join(", ")}.` };
+  }
+}
+
+function consultarSintomasLocal(sintomas) {
+  const txt = sintomas.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  if (txt.includes("fiebre") || txt.includes("temperatura")) {
+    return { condicion: "Posible fiebre o infeccion", descripcion: "La fiebre puede ser signo de infeccion u otras condiciones.", recomendaciones: ["Tomar temperatura cada 4 horas", "Hidratarse bien con agua o suero", "Consultar medico si supera 38.5 grados"], urgencia: "media", mensaje_voz: "Presenta fiebre que puede indicar una infeccion. Es importante hidratarse y consultar a un medico si la temperatura es alta." };
+  }
+  if (txt.includes("dolor de cabeza") || txt.includes("cefalea")) {
+    return { condicion: "Cefalea", descripcion: "Dolor de cabeza que puede tener multiples causas.", recomendaciones: ["Descansar en lugar tranquilo", "Hidratarse bien", "Evitar pantallas y luz intensa"], urgencia: "baja", mensaje_voz: "Presenta dolor de cabeza. Descanse, hidratese y consulte a un medico si el dolor es muy intenso o no mejora." };
+  }
+  if (txt.includes("diarrea") || txt.includes("vomito") || txt.includes("nausea")) {
+    return { condicion: "Trastorno gastrointestinal", descripcion: "Sintomas digestivos que pueden causar deshidratacion.", recomendaciones: ["Tomar suero oral o agua con sal y azucar", "Dieta blanda: arroz, platano, manzana", "Consultar medico si hay sangre o dura mas de 48h"], urgencia: "media", mensaje_voz: "Presenta sintomas gastrointestinales. Es muy importante hidratarse para evitar deshidratacion y consultar a un medico." };
+  }
+  if (txt.includes("pecho") || txt.includes("corazon") || txt.includes("respirar") || txt.includes("dificultad")) {
+    return { condicion: "Sintomas cardiorespiratorios", descripcion: "Sintomas que requieren evaluacion medica urgente.", recomendaciones: ["Buscar atencion medica inmediata", "No hacer esfuerzo fisico", "Llamar a emergencias si empeora"], urgencia: "alta", mensaje_voz: "Los sintomas que describe pueden ser graves. Busque atencion medica de inmediato o llame a emergencias." };
+  }
+  return { condicion: "Consulta general", descripcion: "Los sintomas descritos requieren evaluacion profesional.", recomendaciones: ["Consultar a un medico", "No automedicarse", "Registrar cuando iniciaron los sintomas"], urgencia: "baja", mensaje_voz: "Para los sintomas que describe es importante consultar a un profesional de salud para un diagnostico adecuado." };
+}
 
 let vocesListas = false;
 let mejorVozES = null;
@@ -96,8 +127,8 @@ function inicializarVoces() {
     if (!mejorVozES) mejorVozES = voces.find(v => v.lang.startsWith("es")) || null;
     vocesListas = true;
   };
-  if (window.speechSynthesis.getVoices().length > 0) actualizar();
-  else window.speechSynthesis.onvoiceschanged = actualizar;
+  if (window.speechSynthesis && window.speechSynthesis.getVoices().length > 0) actualizar();
+  else if (window.speechSynthesis) window.speechSynthesis.onvoiceschanged = actualizar;
 }
 
 function hablar(texto, alTerminar) {
@@ -106,59 +137,16 @@ function hablar(texto, alTerminar) {
   inicializarVoces();
   const ejecutar = () => {
     const utt = new SpeechSynthesisUtterance(texto);
-    utt.lang = "es-ES";
-    utt.rate = 0.85;
-    utt.pitch = 1.05;
-    utt.volume = 1;
+    utt.lang = "es-ES"; utt.rate = 0.85; utt.pitch = 1.05; utt.volume = 1;
     if (mejorVozES) utt.voice = mejorVozES;
     if (alTerminar) utt.onend = alTerminar;
     utt.onerror = () => { if (alTerminar) alTerminar(); };
     window.speechSynthesis.speak(utt);
   };
-  if (vocesListas) ejecutar();
-  else setTimeout(ejecutar, 300);
+  if (vocesListas) ejecutar(); else setTimeout(ejecutar, 300);
 }
 
-function detenerVoz() {
-  if (window.speechSynthesis) window.speechSynthesis.cancel();
-}
-
-async function llamarClaude(prompt) {
-  const resp = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 300, messages: [{ role: "user", content: prompt }] })
-  });
-  if (!resp.ok) throw new Error("Error API");
-  const d = await resp.json();
-  return d.content.map(i => i.text || "").join("").replace(/```json|```/g, "").trim();
-}
-
-async function evaluarRespuesta(pregunta, respuestaEsperada, respuestaEstudiante) {
-  try {
-    const txt = await llamarClaude(`Eres evaluador de enfermeria. Evalua si la respuesta es correcta.
-PREGUNTA: ${pregunta}
-RESPUESTA ESPERADA: ${respuestaEsperada}
-RESPUESTA ESTUDIANTE: ${respuestaEstudiante}
-Si menciona los conceptos clave aunque use otras palabras es CORRECTO.
-Responde SOLO con este JSON sin backticks:
-{"correcto": true, "mensaje_voz": "Correcto, muy bien.", "recomendacion": "Breve recomendacion de estudio de 1 linea."}`);
-    return JSON.parse(txt);
-  } catch {
-    return { correcto: false, mensaje_voz: "No pude evaluar. Intenta de nuevo.", recomendacion: "Revisa el tema e intenta nuevamente." };
-  }
-}
-
-async function consultarSintomas(sintomas) {
-  try {
-    const txt = await llamarClaude(`Eres asistente de salud. Analiza estos sintomas brevemente: ${sintomas}
-Responde SOLO con este JSON sin backticks:
-{"condicion": "Posible condicion", "descripcion": "Descripcion breve de 1 oracion.", "recomendaciones": ["Rec 1", "Rec 2", "Rec 3"], "urgencia": "baja", "mensaje_voz": "2 oraciones explicando la condicion y que deben consultar a un medico."}`);
-    return JSON.parse(txt);
-  } catch {
-    return { condicion: "Sin conexion", descripcion: "No se pudo procesar.", recomendaciones: ["Consulte a un medico", "No se automedique", "Llame a urgencias si es grave"], urgencia: "media", mensaje_voz: "No pude procesar su consulta. Por favor consulte a un profesional de salud." };
-  }
-}
+function detenerVoz() { if (window.speechSynthesis) window.speechSynthesis.cancel(); }
 
 const guardar = async (k, v) => { try { await window.storage.set(k, JSON.stringify(v)); } catch {} };
 const cargar = async (k, def) => { try { const r = await window.storage.get(k); return r ? JSON.parse(r.value) : def; } catch { return def; } };
@@ -179,11 +167,7 @@ export default function App() {
   }, []);
 
   const actualizarDB = async n => { setDB(n); await guardar("loyolasim_v5_db", n); };
-  const agregarHist = async e => {
-    const nuevo = [e, ...historial].slice(0, 30);
-    setHistorial(nuevo);
-    await guardar("loyolasim_v5_hist", nuevo);
-  };
+  const agregarHist = async e => { const nuevo = [e, ...historial].slice(0, 30); setHistorial(nuevo); await guardar("loyolasim_v5_hist", nuevo); };
   const mostrarToast = msg => { setToast(msg); setTimeout(() => setToast(null), 3000); };
 
   if (!db) return (
@@ -223,12 +207,12 @@ function Inicio({ setVista }) {
         LoyolaSim<br /><span style={{ color: "#63b3ed" }}>Clinical</span>
       </h1>
       <p style={{ fontSize: "15px", color: "#6a8faa", maxWidth: "480px", marginBottom: "40px", lineHeight: 1.7 }}>
-        Plataforma de simulacion clinica con inteligencia artificial para estudiantes de enfermeria.
+        Plataforma de simulacion clinica para estudiantes de enfermeria.
       </p>
       <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center" }}>
         {[
           { v: "general", icon: "🩺", titulo: "Modo General", desc: "Describe sintomas y recibe orientacion basica en salud con respuesta por voz.", color: "#63b3ed" },
-          { v: "estudiante", icon: "🎓", titulo: "Modo Estudiante", desc: "Practica casos clinicos con evaluacion inmediata por inteligencia artificial.", color: "#9f7aea" }
+          { v: "estudiante", icon: "🎓", titulo: "Modo Estudiante", desc: "Practica casos clinicos con evaluacion inmediata.", color: "#9f7aea" }
         ].map(({ v, icon, titulo, desc, color }) => (
           <div key={v} onClick={() => setVista(v)}
             style={{ background: `${color}12`, border: `1px solid ${color}30`, borderRadius: "20px", padding: "32px 24px", cursor: "pointer", flex: 1, minWidth: "240px", maxWidth: "280px", textAlign: "left", transition: "all 0.3s" }}
@@ -273,17 +257,16 @@ function BtnMic({ esc, toggle, disabled }) {
 
 function General() {
   const [txt, setTxt] = useState("");
-  const [carg, setCarg] = useState(false);
   const [res, setRes] = useState(null);
   const [ley, setLey] = useState(false);
   const onVoz = useCallback(t => setTxt(p => p ? p + " " + t : t), []);
   const [esc, toggle] = useMic(onVoz);
 
-  const consultar = async () => {
+  const consultar = () => {
     if (!txt.trim()) return;
-    setCarg(true); setRes(null); detenerVoz();
-    const r = await consultarSintomas(txt);
-    setRes(r); setCarg(false);
+    detenerVoz();
+    const r = consultarSintomasLocal(txt);
+    setRes(r);
     setLey(true);
     hablar(r.mensaje_voz, () => setLey(false));
   };
@@ -294,20 +277,19 @@ function General() {
   return (
     <div style={{ maxWidth: "680px", margin: "0 auto", padding: "32px 20px" }}>
       <h2 style={{ fontSize: "26px", fontWeight: 700, color: "#fff", marginBottom: "6px" }}>Orientacion en Salud</h2>
-      <p style={{ color: "#6a8faa", fontSize: "13px", marginBottom: "24px" }}>Describe tus sintomas y la IA respondera en voz alta.</p>
+      <p style={{ color: "#6a8faa", fontSize: "13px", marginBottom: "24px" }}>Describe tus sintomas y recibiras orientacion con respuesta por voz.</p>
       <div style={{ background: "rgba(99,179,237,0.05)", border: "1px solid rgba(99,179,237,0.2)", borderRadius: "16px", padding: "20px", marginBottom: "20px" }}>
         <textarea value={txt} onChange={e => setTxt(e.target.value)} placeholder="Ejemplo: Tengo fiebre y dolor de cabeza desde ayer..."
           style={{ width: "100%", background: "transparent", border: "none", color: "#e8eaf0", fontFamily: "inherit", fontSize: "15px", resize: "none", outline: "none", minHeight: "90px", lineHeight: 1.6 }} />
         <div style={{ display: "flex", gap: "10px", marginTop: "12px", alignItems: "center" }}>
           <BtnMic esc={esc} toggle={toggle} />
-          <button onClick={consultar} disabled={carg || !txt.trim()}
-            style={{ flex: 1, padding: "12px 20px", borderRadius: "12px", border: "none", background: "linear-gradient(135deg,#3b82f6,#2563eb)", color: "#fff", fontFamily: "inherit", fontSize: "14px", fontWeight: 600, cursor: "pointer", opacity: carg || !txt.trim() ? 0.5 : 1 }}>
-            {carg ? "Consultando..." : "Consultar →"}
+          <button onClick={consultar} disabled={!txt.trim()}
+            style={{ flex: 1, padding: "12px 20px", borderRadius: "12px", border: "none", background: "linear-gradient(135deg,#3b82f6,#2563eb)", color: "#fff", fontFamily: "inherit", fontSize: "14px", fontWeight: 600, cursor: "pointer", opacity: !txt.trim() ? 0.5 : 1 }}>
+            Consultar →
           </button>
         </div>
         {esc && <div style={{ marginTop: "8px", fontSize: "12px", color: "#ef4444", textAlign: "center" }}>Escuchando... habla ahora</div>}
       </div>
-      {carg && <div style={{ textAlign: "center", padding: "24px", color: "#63b3ed" }}>Analizando sintomas...</div>}
       {res && (
         <div style={{ background: "rgba(16,185,129,0.05)", border: "1px solid rgba(16,185,129,0.2)", borderRadius: "16px", padding: "24px" }}>
           <span style={{ background: `${urgCol[urg]}20`, color: urgCol[urg], border: `1px solid ${urgCol[urg]}40`, padding: "4px 14px", borderRadius: "20px", fontSize: "11px", fontWeight: 700, textTransform: "uppercase" }}>
@@ -340,7 +322,6 @@ function Estudiante({ db, agregarHist }) {
   const [casoIdx, setCasoIdx] = useState(0);
   const [respuesta, setRespuesta] = useState("");
   const [feedback, setFeedback] = useState(null);
-  const [carg, setCarg] = useState(false);
   const [ley, setLey] = useState(false);
   const [resultados, setResultados] = useState([]);
 
@@ -354,12 +335,8 @@ function Estudiante({ db, agregarHist }) {
 
   const iniciarArea = (aid) => {
     const a = db.areas.find(x => x.id === aid);
-    setAreaId(aid);
-    setCasos(a.casos);
-    setCasoIdx(0);
-    setRespuesta("");
-    setFeedback(null);
-    setResultados([]);
+    setAreaId(aid); setCasos(a.casos); setCasoIdx(0);
+    setRespuesta(""); setFeedback(null); setResultados([]);
     setPaso("eval");
     const primer = a.casos[0];
     setTimeout(() => {
@@ -368,12 +345,13 @@ function Estudiante({ db, agregarHist }) {
     }, 400);
   };
 
-  const enviar = async () => {
+  const enviar = () => {
     if (!respuesta.trim() || !pregunta) return;
-    setCarg(true); setFeedback(null); detenerVoz();
-    const r = await evaluarRespuesta(pregunta.texto, pregunta.respuesta, respuesta);
-    const fb = { ...r, pts: r.correcto ? pregunta.puntaje : 0, max: pregunta.puntaje, caso: caso.titulo };
-    setFeedback(fb); setCarg(false);
+    detenerVoz();
+    const palabrasClave = pregunta.palabrasClave || [];
+    const r = evaluarLocal(respuesta, palabrasClave, pregunta.respuesta);
+    const fb = { ...r, pts: r.correcto ? pregunta.puntaje : 0, max: pregunta.puntaje, caso: caso.titulo, respuestaEsperada: pregunta.respuesta };
+    setFeedback(fb);
     setLey(true);
     hablar(r.mensaje_voz, () => setLey(false));
   };
@@ -389,16 +367,12 @@ function Estudiante({ db, agregarHist }) {
       setPaso("resumen");
       setTimeout(() => {
         setLey(true);
-        const msg = pct >= 80
-          ? `Evaluacion completada. Obtuviste ${total} de ${max} puntos. Excelente desempeno.`
-          : `Evaluacion completada. Obtuviste ${total} de ${max} puntos. Repasa los temas donde tuviste dificultades.`;
+        const msg = pct >= 80 ? `Evaluacion completada. Obtuviste ${total} de ${max} puntos. Excelente desempeno.` : `Evaluacion completada. Obtuviste ${total} de ${max} puntos. Repasa los temas donde tuviste dificultades.`;
         hablar(msg, () => setLey(false));
       }, 400);
     } else {
       const sig = casoIdx + 1;
-      setCasoIdx(sig);
-      setRespuesta("");
-      setFeedback(null);
+      setCasoIdx(sig); setRespuesta(""); setFeedback(null);
       setTimeout(() => {
         setLey(true);
         hablar("Caso clinico numero " + (sig + 1) + ". " + casos[sig].caso + ". Pregunta: " + casos[sig].preguntas[0].texto, () => setLey(false));
@@ -409,7 +383,7 @@ function Estudiante({ db, agregarHist }) {
   if (paso === "area") return (
     <div style={{ maxWidth: "800px", margin: "0 auto", padding: "32px 20px" }}>
       <h2 style={{ fontSize: "26px", fontWeight: 700, color: "#fff", marginBottom: "6px" }}>Modo Estudiante</h2>
-      <p style={{ color: "#6a8faa", fontSize: "13px", marginBottom: "24px" }}>Selecciona el area clinica. Evaluaras todos los casos del area uno por uno.</p>
+      <p style={{ color: "#6a8faa", fontSize: "13px", marginBottom: "24px" }}>Selecciona el area clinica para comenzar.</p>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(160px,1fr))", gap: "14px" }}>
         {db.areas.map(a => (
           <div key={a.id} onClick={() => iniciarArea(a.id)}
@@ -427,18 +401,15 @@ function Estudiante({ db, agregarHist }) {
 
   if (paso === "eval" && caso) return (
     <div style={{ maxWidth: "720px", margin: "0 auto", padding: "32px 20px" }}>
-      {/* Progreso */}
       <div style={{ marginBottom: "20px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#4a7fa5", marginBottom: "6px" }}>
-          <span>{area?.nombre}</span>
-          <span>Caso {casoIdx + 1} de {totalCasos}</span>
+          <span>{area?.nombre}</span><span>Caso {casoIdx + 1} de {totalCasos}</span>
         </div>
         <div style={{ height: "6px", background: "rgba(255,255,255,0.08)", borderRadius: "4px", overflow: "hidden" }}>
-          <div style={{ height: "100%", background: "linear-gradient(90deg,#63b3ed,#9f7aea)", borderRadius: "4px", width: `${((casoIdx) / totalCasos) * 100}%`, transition: "width 0.4s" }} />
+          <div style={{ height: "100%", background: "linear-gradient(90deg,#63b3ed,#9f7aea)", borderRadius: "4px", width: `${(casoIdx / totalCasos) * 100}%`, transition: "width 0.4s" }} />
         </div>
       </div>
 
-      {/* Caso */}
       <div style={{ background: "rgba(99,179,237,0.06)", border: "1px solid rgba(99,179,237,0.18)", borderRadius: "16px", padding: "20px", marginBottom: "20px" }}>
         <div style={{ fontSize: "16px", color: "#63b3ed", fontWeight: 700, marginBottom: "8px" }}>📋 {caso.titulo}</div>
         <div style={{ fontSize: "14px", color: "#8ab0c8", lineHeight: 1.7 }}>{caso.caso}</div>
@@ -448,11 +419,9 @@ function Estudiante({ db, agregarHist }) {
         </button>
       </div>
 
-      {/* Pregunta y respuesta */}
       <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "16px", padding: "24px" }}>
         <div style={{ fontSize: "11px", color: "#4a7fa5", textTransform: "uppercase", letterSpacing: "1.5px", marginBottom: "8px" }}>Pregunta</div>
         <div style={{ fontSize: "17px", fontWeight: 600, color: "#e8eaf0", lineHeight: 1.6, marginBottom: "18px" }}>{pregunta?.texto}</div>
-
         <div style={{ display: "flex", gap: "10px", alignItems: "flex-start", marginBottom: "12px" }}>
           <textarea value={respuesta} onChange={e => setRespuesta(e.target.value)} disabled={!!feedback}
             placeholder="Escribe tu respuesta o usa el microfono..."
@@ -462,23 +431,24 @@ function Estudiante({ db, agregarHist }) {
         {esc && <div style={{ fontSize: "12px", color: "#ef4444", marginBottom: "8px", textAlign: "center" }}>🎤 Escuchando... habla ahora</div>}
 
         {!feedback && (
-          <button onClick={enviar} disabled={carg || !respuesta.trim()}
-            style={{ width: "100%", padding: "14px", borderRadius: "12px", border: "none", background: "linear-gradient(135deg,#9f7aea,#7c3aed)", color: "#fff", fontFamily: "inherit", fontSize: "15px", fontWeight: 600, cursor: "pointer", opacity: carg || !respuesta.trim() ? 0.4 : 1 }}>
-            {carg ? "Evaluando con IA..." : "Enviar respuesta →"}
+          <button onClick={enviar} disabled={!respuesta.trim()}
+            style={{ width: "100%", padding: "14px", borderRadius: "12px", border: "none", background: "linear-gradient(135deg,#9f7aea,#7c3aed)", color: "#fff", fontFamily: "inherit", fontSize: "15px", fontWeight: 600, cursor: "pointer", opacity: !respuesta.trim() ? 0.4 : 1 }}>
+            Enviar respuesta →
           </button>
         )}
 
-        {carg && <div style={{ textAlign: "center", padding: "14px", color: "#9f7aea" }}>Evaluando...</div>}
-
         {feedback && (
           <div style={{ background: feedback.correcto ? "rgba(16,185,129,0.12)" : "rgba(239,68,68,0.1)", border: `1px solid ${feedback.correcto ? "rgba(16,185,129,0.4)" : "rgba(239,68,68,0.3)"}`, borderRadius: "12px", padding: "20px", marginTop: "14px" }}>
-            <div style={{ fontSize: "26px", fontWeight: 800, color: feedback.correcto ? "#34d399" : "#f87171", marginBottom: "6px" }}>
+            <div style={{ fontSize: "26px", fontWeight: 800, color: feedback.correcto ? "#34d399" : "#f87171", marginBottom: "8px" }}>
               {feedback.correcto ? "✓ CORRECTO" : "✗ INCORRECTO"}
             </div>
-            <div style={{ fontSize: "13px", color: "#8ab0c8", marginBottom: "10px", fontStyle: "italic" }}>
-              💡 {feedback.recomendacion}
-            </div>
-            {ley && <div style={{ fontSize: "12px", color: "#63b3ed", marginBottom: "10px" }}>🔊 Escucha el resultado...</div>}
+            <div style={{ fontSize: "13px", color: "#8ab0c8", marginBottom: "8px", fontStyle: "italic" }}>💡 {feedback.recomendacion}</div>
+            {!feedback.correcto && (
+              <div style={{ fontSize: "13px", color: "#63b3ed", marginBottom: "10px", background: "rgba(99,179,237,0.08)", padding: "10px", borderRadius: "8px", lineHeight: 1.5 }}>
+                <strong>Respuesta esperada:</strong><br />{feedback.respuestaEsperada}
+              </div>
+            )}
+            {ley && <div style={{ fontSize: "12px", color: "#63b3ed", marginBottom: "8px" }}>🔊 Escucha el resultado...</div>}
             <button onClick={siguiente}
               style={{ width: "100%", padding: "13px", borderRadius: "10px", border: "none", background: casoIdx + 1 >= totalCasos ? "linear-gradient(135deg,#10b981,#059669)" : "linear-gradient(135deg,#63b3ed,#3b82f6)", color: "#fff", fontFamily: "inherit", fontSize: "14px", fontWeight: 700, cursor: "pointer", marginTop: "4px" }}>
               {casoIdx + 1 >= totalCasos ? "Ver resumen final →" : "Siguiente caso →"}
@@ -496,22 +466,17 @@ function Estudiante({ db, agregarHist }) {
     const color = pct >= 80 ? "#10b981" : pct >= 60 ? "#f59e0b" : "#ef4444";
     const correctos = resultados.filter(r => r.correcto).length;
     const incorrectos = resultados.filter(r => !r.correcto).length;
-
     return (
       <div style={{ maxWidth: "600px", margin: "0 auto", padding: "40px 20px", textAlign: "center" }}>
         <div style={{ fontSize: "48px", marginBottom: "16px" }}>🏁</div>
         <h2 style={{ fontSize: "24px", fontWeight: 700, color: "#fff", marginBottom: "4px" }}>Evaluacion Completada</h2>
         <p style={{ color: "#4a7fa5", fontSize: "13px", marginBottom: "28px" }}>{area?.nombre}</p>
-
-        {/* Circulo de puntaje */}
-        <div style={{ width: "140px", height: "140px", borderRadius: "50%", margin: "0 auto 24px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: `conic-gradient(${color} ${pct * 3.6}deg, rgba(255,255,255,0.06) 0)`, boxShadow: `0 0 40px ${color}30` }}>
+        <div style={{ width: "140px", height: "140px", borderRadius: "50%", margin: "0 auto 24px", display: "flex", alignItems: "center", justifyContent: "center", background: `conic-gradient(${color} ${pct * 3.6}deg, rgba(255,255,255,0.06) 0)`, boxShadow: `0 0 40px ${color}30` }}>
           <div style={{ width: "112px", height: "112px", borderRadius: "50%", background: "#0d1a2e", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
             <div style={{ fontSize: "36px", fontWeight: 800, color: "#fff", lineHeight: 1 }}>{pct}%</div>
             <div style={{ fontSize: "11px", color: "#4a7fa5" }}>{total}/{max} pts</div>
           </div>
         </div>
-
-        {/* Estadisticas */}
         <div style={{ display: "flex", gap: "12px", justifyContent: "center", marginBottom: "24px" }}>
           <div style={{ background: "rgba(16,185,129,0.1)", border: "1px solid rgba(16,185,129,0.3)", borderRadius: "12px", padding: "14px 24px" }}>
             <div style={{ fontSize: "28px", fontWeight: 800, color: "#34d399" }}>{correctos}</div>
@@ -522,8 +487,6 @@ function Estudiante({ db, agregarHist }) {
             <div style={{ fontSize: "12px", color: "#4a7fa5" }}>Incorrectos</div>
           </div>
         </div>
-
-        {/* Detalle por caso */}
         <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px", padding: "20px", marginBottom: "20px", textAlign: "left" }}>
           <div style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "1.5px", color: "#4a7fa5", marginBottom: "14px" }}>Detalle por caso</div>
           {resultados.map((r, i) => (
@@ -532,21 +495,16 @@ function Estudiante({ db, agregarHist }) {
                 <div style={{ fontSize: "13px", color: "#c8d8e8", marginBottom: "2px" }}>{r.caso}</div>
                 <div style={{ fontSize: "11px", color: "#4a7fa5", fontStyle: "italic" }}>{r.recomendacion}</div>
               </div>
-              <div style={{ fontSize: "18px", fontWeight: 700, color: r.correcto ? "#34d399" : "#f87171", flexShrink: 0 }}>
-                {r.correcto ? "✓" : "✗"}
-              </div>
+              <div style={{ fontSize: "18px", fontWeight: 700, color: r.correcto ? "#34d399" : "#f87171", flexShrink: 0 }}>{r.correcto ? "✓" : "✗"}</div>
             </div>
           ))}
         </div>
-
-        {/* Recomendacion general */}
         <div style={{ background: "rgba(99,179,237,0.08)", border: "1px solid rgba(99,179,237,0.2)", borderRadius: "12px", padding: "16px", marginBottom: "20px", textAlign: "left" }}>
-          <div style={{ fontSize: "13px", color: "#63b3ed", fontWeight: 600, marginBottom: "6px" }}>📚 Recomendacion general</div>
+          <div style={{ fontSize: "13px", color: "#63b3ed", fontWeight: 600, marginBottom: "6px" }}>📚 Recomendacion</div>
           <div style={{ fontSize: "13px", color: "#8ab0c8", lineHeight: 1.5 }}>
-            {pct >= 80 ? "Excelente manejo de los casos clinicos. Sigue practicando para mantener tu nivel." : pct >= 60 ? "Buen desempeno. Repasa los casos que fallaste antes de la evaluacion final." : "Necesitas reforzar los temas. Revisa el material de clase y practica mas casos."}
+            {pct >= 80 ? "Excelente manejo de los casos clinicos. Sigue practicando." : pct >= 60 ? "Buen desempeno. Repasa los casos que fallaste." : "Necesitas reforzar los temas. Revisa el material de clase."}
           </div>
         </div>
-
         <button onClick={() => { setPaso("area"); setResultados([]); }}
           style={{ width: "100%", padding: "14px", borderRadius: "30px", border: "none", background: "linear-gradient(135deg,#63b3ed,#3b82f6)", color: "#fff", fontFamily: "inherit", fontSize: "15px", fontWeight: 700, cursor: "pointer" }}>
           Evaluar otra area →
@@ -554,7 +512,6 @@ function Estudiante({ db, agregarHist }) {
       </div>
     );
   }
-
   return null;
 }
 
@@ -583,10 +540,10 @@ function Admin({ db, actualizarDB, toast }) {
 
   const updCaso = (cid, f, v) => actualizarDB({ ...db, areas: db.areas.map(a => a.id !== tab ? a : { ...a, casos: a.casos.map(c => c.id !== cid ? c : { ...c, [f]: v }) }) });
   const updQ = (cid, f, v) => actualizarDB({ ...db, areas: db.areas.map(a => a.id !== tab ? a : { ...a, casos: a.casos.map(c => { if (c.id !== cid) return c; const q = { ...c.preguntas[0], [f]: f === "puntaje" ? parseInt(v) || 0 : v }; return { ...c, preguntas: [q] }; }) }) });
-  const addCaso = () => { const id = "c" + Date.now(); actualizarDB({ ...db, areas: db.areas.map(a => a.id !== tab ? a : { ...a, casos: [...a.casos, { id, titulo: "Nuevo caso", caso: "", preguntas: [{ texto: "", respuesta: "", puntaje: 10 }] }] }) }); setAbierto(id); toast("Caso agregado"); };
+  const updPalabras = (cid, v) => actualizarDB({ ...db, areas: db.areas.map(a => a.id !== tab ? a : { ...a, casos: a.casos.map(c => { if (c.id !== cid) return c; const q = { ...c.preguntas[0], palabrasClave: v.split(",").map(p => p.trim()).filter(Boolean) }; return { ...c, preguntas: [q] }; }) }) });
+  const addCaso = () => { const id = "c" + Date.now(); actualizarDB({ ...db, areas: db.areas.map(a => a.id !== tab ? a : { ...a, casos: [...a.casos, { id, titulo: "Nuevo caso", caso: "", preguntas: [{ texto: "", respuesta: "", puntaje: 10, palabrasClave: [] }] }] }) }); setAbierto(id); toast("Caso agregado"); };
   const delCaso = cid => { if (!confirm("Eliminar este caso?")) return; actualizarDB({ ...db, areas: db.areas.map(a => a.id !== tab ? a : { ...a, casos: a.casos.filter(c => c.id !== cid) }) }); toast("Eliminado"); };
   const reset = () => { if (!confirm("Restaurar base de datos original?")) return; actualizarDB(INITIAL_DB); toast("Restaurado"); };
-
   const inp = { width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px", padding: "10px 14px", color: "#e8eaf0", fontFamily: "inherit", fontSize: "14px", outline: "none", marginBottom: "10px" };
 
   return (
@@ -595,7 +552,7 @@ function Admin({ db, actualizarDB, toast }) {
         <h2 style={{ fontSize: "24px", fontWeight: 700, color: "#fff" }}>Panel Docente</h2>
         <button onClick={reset} style={{ padding: "7px 14px", borderRadius: "8px", border: "1px solid rgba(239,68,68,0.3)", background: "transparent", color: "#f87171", fontFamily: "inherit", fontSize: "12px", cursor: "pointer" }}>Restaurar original</button>
       </div>
-      <p style={{ color: "#6a8faa", fontSize: "13px", marginBottom: "20px" }}>Cada caso tiene 1 pregunta y 1 respuesta esperada. Los cambios se guardan automaticamente.</p>
+      <p style={{ color: "#6a8faa", fontSize: "13px", marginBottom: "20px" }}>Agrega palabras clave separadas por coma para que el sistema evalúe las respuestas automaticamente.</p>
       <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "20px" }}>
         {db.areas.map(a => (
           <button key={a.id} onClick={() => setTab(a.id)} style={{ padding: "7px 14px", borderRadius: "20px", border: `1px solid ${tab === a.id ? a.color + "80" : "rgba(255,255,255,0.1)"}`, background: tab === a.id ? a.color + "20" : "transparent", color: tab === a.id ? "#e8eaf0" : "#6a8faa", fontSize: "12px", cursor: "pointer", fontFamily: "inherit", fontWeight: tab === a.id ? 600 : 400 }}>
@@ -621,11 +578,14 @@ function Admin({ db, actualizarDB, toast }) {
                   <label style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "1.5px", color: "#4a7fa5", display: "block", marginBottom: "5px" }}>Titulo</label>
                   <input style={inp} value={c.titulo} onChange={e => updCaso(c.id, "titulo", e.target.value)} placeholder="Titulo del caso..." />
                   <label style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "1.5px", color: "#4a7fa5", display: "block", marginBottom: "5px" }}>Descripcion del caso</label>
-                  <textarea style={{ ...inp, resize: "vertical", minHeight: "70px", lineHeight: 1.5 }} value={c.caso} onChange={e => updCaso(c.id, "caso", e.target.value)} placeholder="Describe el caso clinico brevemente..." />
+                  <textarea style={{ ...inp, resize: "vertical", minHeight: "70px", lineHeight: 1.5 }} value={c.caso} onChange={e => updCaso(c.id, "caso", e.target.value)} placeholder="Describe el caso clinico..." />
                   <label style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "1.5px", color: "#4a7fa5", display: "block", marginBottom: "5px" }}>Pregunta</label>
                   <input style={inp} value={c.preguntas[0]?.texto || ""} onChange={e => updQ(c.id, "texto", e.target.value)} placeholder="Pregunta de evaluacion..." />
                   <label style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "1.5px", color: "#4a7fa5", display: "block", marginBottom: "5px" }}>Respuesta esperada</label>
-                  <textarea style={{ ...inp, resize: "vertical", minHeight: "60px", lineHeight: 1.5 }} value={c.preguntas[0]?.respuesta || ""} onChange={e => updQ(c.id, "respuesta", e.target.value)} placeholder="Respuesta que la IA usara para evaluar..." />
+                  <textarea style={{ ...inp, resize: "vertical", minHeight: "60px", lineHeight: 1.5 }} value={c.preguntas[0]?.respuesta || ""} onChange={e => updQ(c.id, "respuesta", e.target.value)} placeholder="Respuesta completa esperada..." />
+                  <label style={{ fontSize: "11px", textTransform: "uppercase", letterSpacing: "1.5px", color: "#4a7fa5", display: "block", marginBottom: "5px" }}>Palabras clave (separadas por coma)</label>
+                  <input style={inp} value={(c.preguntas[0]?.palabrasClave || []).join(", ")} onChange={e => updPalabras(c.id, e.target.value)} placeholder="ej: contracciones, liquido amniotico, trabajo de parto" />
+                  <div style={{ fontSize: "11px", color: "#3a6a8a", marginBottom: "10px" }}>✓ Correcto si el estudiante menciona al menos el 40% de las palabras clave.</div>
                   <label style={{ fontSize: "12px", color: "#6a8faa", display: "flex", alignItems: "center", gap: "8px" }}>
                     Puntaje: <input type="number" min="1" max="20" value={c.preguntas[0]?.puntaje || 10} onChange={e => updQ(c.id, "puntaje", e.target.value)} style={{ ...inp, width: "70px", marginBottom: 0, textAlign: "center", padding: "6px" }} />
                   </label>
