@@ -41,7 +41,7 @@ const INITIAL_DB = {
 };
 
 const ADMIN_PIN = "1234";
-const LOGO_URL = const LOGO_URL = "https://raw.githubusercontent.com/imamani-nursing/nursing-simulator/main/public/fa88d381-f0a6-4bcb-a1e3-53bfd8e930e7.jpg";
+const LOGO_URL = "https://raw.githubusercontent.com/imamani-nursing/nursing-simulator/main/public/fa88d381-f0a6-4bcb-a1e3-53bfd8e930e7.jpg";
 
 // ── SONIDO ROBÓTICO ─────────────────────────────────────────────
 function tocarSonidoRobotico() {
